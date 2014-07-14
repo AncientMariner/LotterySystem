@@ -1,6 +1,7 @@
-package org.xander;
+package org.xander.model;
 
-public class Draw {
+public class Draw implements Persistent {
+    private long id;
     private int prize;
     private int lotteryNumber;
 
@@ -18,5 +19,23 @@ public class Draw {
 
     public int getLotteryNumber() {
         return lotteryNumber;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    private void setLotteryNumber(int lotteryNumber) {
+        this.lotteryNumber = lotteryNumber;
+    }
+
+    private void setPrize(int prize) {
+        this.prize = prize;
     }
 }

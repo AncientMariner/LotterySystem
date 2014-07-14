@@ -1,4 +1,4 @@
-package org.xander;
+package org.xander.model;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,5 +38,14 @@ public class DrawTest {
 
         exception.expect(IllegalStateException.class);
         draw = new Draw(prize, number);
+    }
+
+    @Test
+    public void generateDrawId() {
+        Long id = 111L;
+
+        draw = new Draw(1, 2);
+        draw.setId(id);
+        assertEquals(id, draw.getId());
     }
 }

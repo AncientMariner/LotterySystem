@@ -1,4 +1,4 @@
-package org.xander;
+package org.xander.model;
 
 public class DrawConfiguration {
     private int prize;

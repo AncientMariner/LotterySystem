@@ -1,4 +1,4 @@
-package org.xander;
+package org.xander.model;
 
 import org.junit.Rule;
 import org.junit.Test;

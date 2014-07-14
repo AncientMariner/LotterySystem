@@ -1,4 +1,4 @@
-package org.xander;
+package org.xander.model;
 
 public class Player {
     public static final String DEFAULT_NAME = "default name";
