@@ -1,8 +1,6 @@
 package org.xander.dao;
 
-import org.xander.model.Draw;
 import org.xander.model.DrawConfiguration;
-import org.xander.model.Player;
 
 import java.util.List;
 
