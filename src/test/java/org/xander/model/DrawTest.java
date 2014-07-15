@@ -42,10 +42,7 @@ public class DrawTest {
 
     @Test
     public void generateDrawId() {
-        Long id = 111L;
-
         draw = new Draw(1, 2);
-        draw.setId(id);
-        assertEquals(id, draw.getId());
+        assertEquals(new Long(0), draw.getId());
     }
 }

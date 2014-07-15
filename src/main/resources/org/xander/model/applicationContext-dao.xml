@@ -11,7 +11,9 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="contentHibernateDao" class="org.xander.dao.DrawHibernateDao" parent="abstractHibernateDao"/>
+    <bean id="drawHibernateDao" class="org.xander.dao.DrawHibernateDao" parent="abstractHibernateDao"/>
+    <bean id="drawConfigurationHibernateDao" class="org.xander.dao.DrawConfigurationHibernateDao" parent="abstractHibernateDao"/>
+    <bean id="playerHibernateDao" class="org.xander.dao.PlayerHibernateDao" parent="abstractHibernateDao"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -25,6 +27,8 @@
         <property name="mappingResources">
             <list>
                 <value>org/xander/model/Draw.hbm.xml</value>
+                <value>org/xander/model/Player.hbm.xml</value>
+                <value>org/xander/model/DrawConfiguration.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">

@@ -1,6 +1,7 @@
 package org.xander.model;
 
-public class DrawConfiguration {
+public class DrawConfiguration implements Persistent{
+    private Long id;
     private int prize;
     private int numberOfWinners;
 
@@ -19,5 +20,21 @@ public class DrawConfiguration {
 
     public int getNumberOfWinners() {
         return numberOfWinners;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    private void setId(long id) {
+        this.id = id;
+    }
+
+    private void setPrize(int prize) {
+        this.prize = prize;
+    }
+
+    private void setNumberOfWinners(int numberOfWinners) {
+        this.numberOfWinners = numberOfWinners;
     }
 }

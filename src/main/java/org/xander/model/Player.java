@@ -1,9 +1,10 @@
 package org.xander.model;
 
-public class Player {
+public class Player implements Persistent {
     public static final String DEFAULT_NAME = "default name";
     public static final int DEFAULT_LOTTERY_NUMBER = 0;
 
+    private Long id;
     private String name;
     private int lotteryNumber;
 
@@ -25,5 +26,22 @@ public class Player {
 
     public int getLotteryNumber() {
         return lotteryNumber;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
+    }
+
+    private void setName(String name) {
+        this.name = name;
+    }
+
+    private void setLotteryNumber(int lotteryNumber) {
+        this.lotteryNumber = lotteryNumber;
     }
 }
