@@ -4,15 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
-import org.xander.dao.Dao;
 import org.xander.dao.DrawConfigurationHibernateDao;
-import org.xander.dao.DrawHibernateDao;
 import org.xander.model.DrawConfiguration;
 
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @ContextConfiguration(locations = {"classpath:/org/xander/service/applicationContext-service.xml",
@@ -21,7 +18,7 @@ public class DrawConfigurationServiceTest {
     @Mock
     private DrawConfigurationHibernateDao dao;
     @Mock
-    DrawConfiguration drawConfiguration;
+    private DrawConfiguration drawConfiguration;
     private DrawConfigurationService drawConfigurationService;
 
 
@@ -47,12 +44,19 @@ public class DrawConfigurationServiceTest {
     @Test
     public void createDrawConfiguration() {
         drawConfigurationService.addContent(drawConfiguration);
-        verify(dao).saveOrUpdate(drawConfiguration);
+        verify(dao).saveOrUpdate((DrawConfiguration) anyObject());
     }
 
     @Test
     public void getDrawConfigurationByPrize() {
         drawConfigurationService.getDrawConfigurationByPrize(anyInt());
         verify(dao).getByPrize(anyInt());
+    }
+
+    @Test
+    public void generateConfig() {
+        drawConfigurationService.generateContent(drawConfiguration);
+        drawConfigurationService.generateContent(drawConfiguration);
+        verify(dao, times(2)).saveOrUpdate((DrawConfiguration) anyObject());
     }
 }

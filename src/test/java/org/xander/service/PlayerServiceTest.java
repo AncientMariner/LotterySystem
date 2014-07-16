@@ -9,6 +9,7 @@ import org.xander.model.Player;
 
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -19,7 +20,7 @@ public class PlayerServiceTest {
     @Mock
     private PlayerHibernateDao playerHibernateDao;
     @Mock
-    Player player;
+    private Player player;
     private PlayerService playerService;
 
 
@@ -45,7 +46,7 @@ public class PlayerServiceTest {
     @Test
     public void createPlayer() {
         playerService.addContent(player);
-        verify(playerHibernateDao).saveOrUpdate(player);
+        verify(playerHibernateDao).saveOrUpdate((Player) anyObject());
     }
 
     @Test

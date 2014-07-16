@@ -20,7 +20,7 @@ public class DrawService implements ContentService<Persistent>{
 
     @Override
     public Persistent getById(Long id) {
-        return (Persistent) dao.get(id);
+        return dao.get(id);
     }
 
     @Override

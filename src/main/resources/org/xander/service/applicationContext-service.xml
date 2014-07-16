@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       xmlns:aop="http://www.springframework.org/schema/aop">
 
     <context:component-scan base-package="org.xander.service"/>
 
@@ -22,5 +23,19 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="randomService" class="org.xander.randomService.RandomNumberGenerationService">
+    </bean>
+
+    <bean id="generateDraw" class="org.xander.userScenario.GenerateDraw">
+        <constructor-arg index="0" ref="drawService"/>
+        <constructor-arg index="1" ref="randomService"/>
+    </bean>
+
+    <bean id="generatePlayer" class="org.xander.userScenario.GeneratePlayer">
+        <constructor-arg index="0" ref="playerService"/>
+        <constructor-arg index="1" ref="randomService"/>
+    </bean>
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>
