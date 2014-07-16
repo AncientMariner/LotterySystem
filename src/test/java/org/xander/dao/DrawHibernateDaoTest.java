@@ -7,7 +7,6 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.model.Draw;
-import org.xander.model.Persistent;
 
 import java.util.List;
 
@@ -19,16 +18,16 @@ import static org.junit.Assert.assertEquals;
 public class DrawHibernateDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
-    private Dao drawHibernateDao;
+    private Dao<Draw> drawHibernateDao;
 
     @Test
     public void getById() {
-        Persistent draw = new Draw(1, 2);
+        Draw draw = new Draw(1, 2);
         drawHibernateDao.saveOrUpdate(draw);
 
-        Draw result = (Draw) drawHibernateDao.get(draw.getId());
-        assertEquals(((Draw)draw).getLotteryNumber(), result.getLotteryNumber());
-        assertEquals(((Draw)draw).getPrize(), result.getPrize());
+        Draw result = drawHibernateDao.get(draw.getId());
+        assertEquals(result.getLotteryNumber(), draw.getLotteryNumber());
+        assertEquals(draw.getPrize(), result.getPrize());
     }
 
     @Test
