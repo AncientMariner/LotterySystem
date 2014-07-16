@@ -3,6 +3,8 @@ package org.xander.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.dao.Dao;
+import org.xander.dao.DrawConfigurationHibernateDao;
+import org.xander.model.DrawConfiguration;
 import org.xander.model.Persistent;
 
 import java.util.List;
@@ -29,5 +31,9 @@ public class DrawConfigurationService implements ContentService<Persistent> {
     @Override
     public List<Persistent> getAll() {
         return dao.getAll();
+    }
+
+    public List<DrawConfiguration> getDrawConfigurationByPrize(int prize) {
+        return ((DrawConfigurationHibernateDao)dao).getByPrize(prize);
     }
 }

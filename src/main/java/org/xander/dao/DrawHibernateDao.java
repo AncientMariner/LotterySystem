@@ -1,5 +1,6 @@
 package org.xander.dao;
 
+import org.hibernate.criterion.Restrictions;
 import org.xander.model.Draw;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class DrawHibernateDao extends AbstractHibernateDao<Draw>{
 
     public List<Draw> getByPrize(int prize) {
         return getSession()
-                .createQuery("from Draw as P where P.prize = :prize")
-                .setInteger("prize", prize)
+                .createCriteria(Draw.class)
+                .add(Restrictions.eq("prize", prize))
                 .list();
     }
 }

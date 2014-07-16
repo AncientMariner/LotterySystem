@@ -3,11 +3,13 @@ package org.xander.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.dao.Dao;
+import org.xander.dao.PlayerHibernateDao;
 import org.xander.model.Persistent;
+import org.xander.model.Player;
 
 import java.util.List;
 
-@Service(value = "plyerService")
+@Service(value = "playerService")
 @Transactional
 public class PlayerService implements ContentService<Persistent> {
     Dao dao;
@@ -29,5 +31,9 @@ public class PlayerService implements ContentService<Persistent> {
     @Override
     public List<Persistent> getAll() {
         return dao.getAll();
+    }
+
+    public List<Player>getByLotteryNumber(int lotteryNumber) {
+        return ((PlayerHibernateDao)dao).getByLotteryNumber(lotteryNumber);
     }
 }

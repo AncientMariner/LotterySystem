@@ -4,9 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
-import org.xander.dao.Dao;
+import org.xander.dao.DrawHibernateDao;
 import org.xander.model.Draw;
 
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,34 +17,39 @@ import static org.mockito.MockitoAnnotations.initMocks;
                                    "classpath:/org/xander/model/applicationContext-dao.xml"})
 public class DrawServiceTest {
     @Mock
-    private Dao dao;
+    private DrawHibernateDao drawHibernateDao;
     @Mock
     Draw draw;
     private DrawService drawService;
 
-
     @Before
     public void setUp() {
         initMocks(this);
-        drawService = new DrawService(dao);
+        drawService = new DrawService(drawHibernateDao);
     }
 
     @Test
     public void drawGetById() {
-        when(dao.get(draw.getId())).thenReturn(draw);
+        when(drawHibernateDao.get(draw.getId())).thenReturn(draw);
         drawService.getById(draw.getId());
-        verify(dao).get(anyLong());
+        verify(drawHibernateDao).get(anyLong());
     }
 
     @Test
     public void drawGetAll() {
         drawService.getAll();
-        verify(dao).getAll();
+        verify(drawHibernateDao).getAll();
     }
 
     @Test
     public void createDraw() {
         drawService.addContent(draw);
-        verify(dao).saveOrUpdate(draw);
+        verify(drawHibernateDao).saveOrUpdate(draw);
+    }
+
+    @Test
+    public void getDrawByPrize() {
+        drawService.getDrawByPrize(anyInt());
+        verify(drawHibernateDao).getByPrize(anyInt());
     }
 }

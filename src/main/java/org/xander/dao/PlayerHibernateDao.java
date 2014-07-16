@@ -1,5 +1,6 @@
 package org.xander.dao;
 
+import org.hibernate.criterion.Restrictions;
 import org.xander.model.Player;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class PlayerHibernateDao extends AbstractHibernateDao<Player>{
 
     public List<Player> getByLotteryNumber(int lotteryNumber) {
         return getSession()
-                .createQuery("from Player as P where P.lotteryNumber = :lotteryNumber")
-                .setInteger("lotteryNumber", lotteryNumber)
+                .createCriteria(Player.class)
+                .add(Restrictions.eq("lotteryNumber", lotteryNumber))
                 .list();
     }
 }

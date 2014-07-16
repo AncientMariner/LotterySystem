@@ -1,5 +1,6 @@
 package org.xander.dao;
 
+import org.hibernate.criterion.Restrictions;
 import org.xander.model.DrawConfiguration;
 
 import java.util.List;
@@ -14,8 +15,13 @@ public class DrawConfigurationHibernateDao extends AbstractHibernateDao<DrawConf
 
     public List<DrawConfiguration> getByPrize(int prize) {
         return getSession()
-                .createQuery("from DrawConfiguration as P where P.prize = :prize")
-                .setInteger("prize", prize)
+                .createCriteria(DrawConfiguration.class)
+                .add(Restrictions.eq("prize", prize))
                 .list();
+//        raw sql way
+//        return getSession()
+//                .createQuery("from DrawConfiguration as P where P.prize = :prize")
+//                .setInteger("prize", prize)
+//                .list();
     }
 }

@@ -5,8 +5,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.xander.dao.Dao;
+import org.xander.dao.DrawConfigurationHibernateDao;
+import org.xander.dao.DrawHibernateDao;
 import org.xander.model.DrawConfiguration;
 
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,7 +19,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
                                    "classpath:/org/xander/model/applicationContext-dao.xml"})
 public class DrawConfigurationServiceTest {
     @Mock
-    private Dao dao;
+    private DrawConfigurationHibernateDao dao;
     @Mock
     DrawConfiguration drawConfiguration;
     private DrawConfigurationService drawConfigurationService;
@@ -45,5 +48,11 @@ public class DrawConfigurationServiceTest {
     public void createDrawConfiguration() {
         drawConfigurationService.addContent(drawConfiguration);
         verify(dao).saveOrUpdate(drawConfiguration);
+    }
+
+    @Test
+    public void getDrawConfigurationByPrize() {
+        drawConfigurationService.getDrawConfigurationByPrize(anyInt());
+        verify(dao).getByPrize(anyInt());
     }
 }

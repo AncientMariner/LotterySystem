@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(locations = {"classpath:/org/xander/model/applicationContext-dao.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
-public class PlayerDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class PlayerHibernateDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
     private PlayerHibernateDao playerHibernateDao;
