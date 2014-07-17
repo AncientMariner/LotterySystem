@@ -22,16 +22,13 @@ public class GenerateDrawTest {
     private DrawHibernateDao drawHibernateDao;
     @Mock
     private Draw draw;
-//    private DrawService drawService;
     @Mock
     private RandomService randomService;
-    @Mock
     private GenerateDraw generateDraw;
 
     @Before
     public void setUp() {
         initMocks(this);
-
         generateDraw = new GenerateDraw(new DrawService(drawHibernateDao), randomService);
     }
 

@@ -9,7 +9,6 @@ import org.xander.service.DrawService;
 
 @Transactional
 public class GenerateDraw {
-
     @Qualifier("drawService")
     @Autowired
     private DrawService drawService;
@@ -32,8 +31,8 @@ public class GenerateDraw {
         Draw randomDraw1 = new Draw(1000, randomLotteryNumber1);
         Draw randomDraw2 = new Draw(500, randomLotteryNumber2);
         Draw randomDraw3 = new Draw(100, randomLotteryNumber3);
-        Draw randomDraw4 = new Draw(100, randomLotteryNumber4);
-        Draw randomDraw5 = new Draw(100, randomLotteryNumber5);
+        Draw randomDraw4 = new Draw(50, randomLotteryNumber4);
+        Draw randomDraw5 = new Draw(20, randomLotteryNumber5);
 
         drawService.addContent(randomDraw1);
         drawService.addContent(randomDraw2);

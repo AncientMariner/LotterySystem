@@ -19,9 +19,7 @@ public class GeneratePlayer {
     }
 
     public void generatePlayer(String name) {
-        int randomNumber = randomService.generateRandomNumber();
-
-        Player player = new Player(name, randomNumber);
+        Player player = new Player(name, randomService.generateRandomNumber());
         playerService.addContent(player);
     }
 }

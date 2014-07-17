@@ -23,8 +23,7 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="randomService" class="org.xander.randomService.RandomNumberGenerationService">
-    </bean>
+    <bean id="randomService" class="org.xander.randomService.RandomNumberGenerationService" />
 
     <bean id="generateDraw" class="org.xander.userScenario.GenerateDraw">
         <constructor-arg index="0" ref="drawService"/>

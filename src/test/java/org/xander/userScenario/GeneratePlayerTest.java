@@ -21,29 +21,22 @@ public class GeneratePlayerTest {
     private PlayerHibernateDao playerHibernateDao;
     @Mock
     private Player player;
-    private GeneratePlayer generatePlayer;
-
     @Mock
     private RandomService randomService;
-    @Mock
-    private PlayerService playerService;
+    private GeneratePlayer generatePlayer;
 
     @Before
     public void setUp() {
         initMocks(this);
         generatePlayer = new GeneratePlayer(new PlayerService(playerHibernateDao), randomService);
-//        generateDraw = new GenerateDraw(drawService);
     }
 
     @Test
     public void generatePlayer() {
-        String name = "Jack";
-//        when(player.getName()).thenReturn(name);
         when(randomService.generateRandomNumber()).thenReturn(1);
-        generatePlayer.generatePlayer(name);
+        generatePlayer.generatePlayer("Jack-o-Lantern");
 
         verify(randomService).generateRandomNumber();
         verify(playerHibernateDao).saveOrUpdate((Player) anyObject());
     }
-
 }
