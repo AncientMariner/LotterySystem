@@ -5,13 +5,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.xander.dao.Dao;
 import org.xander.dao.DrawConfigurationHibernateDao;
 import org.xander.model.DrawConfiguration;
-import org.xander.model.Persistent;
 
 import java.util.List;
 
 @Service(value = "drawConfigurationService")
 @Transactional
-public class DrawConfigurationService implements ContentService<Persistent> {
+public class DrawConfigurationService implements ContentService<DrawConfiguration> {
     Dao dao;
 
     public DrawConfigurationService(Dao dao) {
@@ -19,17 +18,17 @@ public class DrawConfigurationService implements ContentService<Persistent> {
     }
 
     @Override
-    public Persistent getById(Long id) {
-        return dao.get(id);
+    public DrawConfiguration getById(Long id) {
+        return (DrawConfiguration) dao.get(id);
     }
 
     @Override
-    public void addContent(Persistent drawConfiguration) {
+    public void addContent(DrawConfiguration drawConfiguration) {
         dao.saveOrUpdate(drawConfiguration);
     }
 
     @Override
-    public List<Persistent> getAll() {
+    public List<DrawConfiguration> getAll() {
         return dao.getAll();
     }
 
