@@ -41,7 +41,9 @@
     </bean>
 
     <bean id="drawResults" class="org.xander.userScenario.DrawResults">
-        <constructor-arg ref="playerService"/>
+        <constructor-arg index="0" ref="playerService"/>
+        <constructor-arg index="1" ref="drawService"/>
+        <constructor-arg index="2" ref="drawConfigurationService"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
