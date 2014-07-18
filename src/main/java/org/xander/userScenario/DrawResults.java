@@ -3,6 +3,7 @@ package org.xander.userScenario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
+import org.xander.model.Draw;
 import org.xander.model.DrawConfiguration;
 import org.xander.model.Player;
 import org.xander.service.DrawConfigurationService;
@@ -45,15 +46,16 @@ public class DrawResults {
         return tickets;
     }
 
-    public void getWinners() {
-        List<DrawConfiguration> drawConfigurations = drawConfigurationService.getAll();
-        for (DrawConfiguration drawConfiguration : drawConfigurations) {
-            drawService.getDrawByPrize(drawConfiguration.getPrize());
+    public List<Player> getWinners() {
+        List<Player> winnersList = new ArrayList<>();
+
+        for (DrawConfiguration drawConfWinners : drawConfigurationService.getAll()) {
+            List<Draw> drawList = drawService.getDrawByPrize(drawConfWinners.getPrize());
+            for (Draw draw : drawList) {
+                List<Player> playerList = playerService.getByLotteryNumber(draw.getLotteryNumber());
+                winnersList.addAll(playerList);
+            }
         }
-
-
-
-//        drawService.getDrawByPrize()
-//        playerService.getByLotteryNumber()
+        return winnersList;
     }
 }
