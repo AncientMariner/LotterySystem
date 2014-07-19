@@ -30,12 +30,12 @@
 
     <bean id="randomService" class="org.xander.randomService.RandomNumberGenerationService" />
 
-    <bean id="generateDraw" class="org.xander.userScenario.GenerateDraw">
+    <bean id="generateDraw" class="org.xander.userScenario.CalculateDraw">
         <constructor-arg index="0" ref="drawService"/>
         <constructor-arg index="1" ref="randomService"/>
     </bean>
 
-    <bean id="generatePlayer" class="org.xander.userScenario.GeneratePlayer">
+    <bean id="generatePlayer" class="org.xander.userScenario.PlayerGeneration">
         <constructor-arg index="0" ref="playerService"/>
         <constructor-arg index="1" ref="randomService"/>
     </bean>

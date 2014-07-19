@@ -8,7 +8,7 @@ import org.xander.randomService.RandomService;
 import org.xander.service.DrawService;
 
 @Transactional
-public class GenerateDraw {
+public class CalculateDraw {
     @Qualifier("drawService")
     @Autowired
     private DrawService drawService;
@@ -16,7 +16,7 @@ public class GenerateDraw {
     @Autowired
     private RandomService randomService;
 
-    public GenerateDraw(DrawService drawService, RandomService randomService) {
+    public CalculateDraw(DrawService drawService, RandomService randomService) {
         this.drawService = drawService;
         this.randomService = randomService;
     }
@@ -27,6 +27,7 @@ public class GenerateDraw {
         int randomLotteryNumber3 = randomService.generateRandomNumber();
         int randomLotteryNumber4 = randomService.generateRandomNumber();
         int randomLotteryNumber5 = randomService.generateRandomNumber();
+        // todo make sure number are different
 
         Draw randomDraw1 = new Draw(1000, randomLotteryNumber1);
         Draw randomDraw2 = new Draw(500, randomLotteryNumber2);
