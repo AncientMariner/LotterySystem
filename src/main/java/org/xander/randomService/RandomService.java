@@ -1,5 +1,7 @@
 package org.xander.randomService;
 
+import java.util.List;
+
 public interface RandomService {
-    int generateRandomNumber();
+    List<Integer> generateRandomNumber();
 }

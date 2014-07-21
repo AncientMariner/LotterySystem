@@ -4,8 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.model.Draw;
+import org.xander.randomService.RandomNumberGenerationService;
 import org.xander.randomService.RandomService;
 import org.xander.service.DrawService;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Transactional
 public class CalculateDraw {
@@ -22,23 +27,24 @@ public class CalculateDraw {
     }
 
     public void generateDraw() {
-        int randomLotteryNumber1 = randomService.generateRandomNumber();
-        int randomLotteryNumber2 = randomService.generateRandomNumber();
-        int randomLotteryNumber3 = randomService.generateRandomNumber();
-        int randomLotteryNumber4 = randomService.generateRandomNumber();
-        int randomLotteryNumber5 = randomService.generateRandomNumber();
-        // todo make sure number are different
+        List<Integer> numbers = randomService.generateRandomNumber();
 
-        Draw randomDraw1 = new Draw(1000, randomLotteryNumber1);
-        Draw randomDraw2 = new Draw(500, randomLotteryNumber2);
-        Draw randomDraw3 = new Draw(100, randomLotteryNumber3);
-        Draw randomDraw4 = new Draw(50, randomLotteryNumber4);
-        Draw randomDraw5 = new Draw(20, randomLotteryNumber5);
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
-        drawService.addContent(randomDraw1);
-        drawService.addContent(randomDraw2);
-        drawService.addContent(randomDraw3);
-        drawService.addContent(randomDraw4);
-        drawService.addContent(randomDraw5);
+        int sizeOfWinNumbers = ((RandomNumberGenerationService)randomService).getSizeOfWinNumbers();
+
+        if (uniqueNumbers.size() != sizeOfWinNumbers) {
+            throw new UnsupportedOperationException("There is an error in random lottery service " +
+                    "- please use your ticket for the next lottery draft");
+        }
+
+        for (int number = 1; number <= numbers.size(); number++) {
+            addDraw(number);
+        }
+    }
+
+    private void addDraw(int number) {
+        Draw randomDraw = new Draw(number * 200, number);
+        drawService.addContent(randomDraw);
     }
 }

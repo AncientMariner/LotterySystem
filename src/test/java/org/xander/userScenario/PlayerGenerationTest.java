@@ -6,8 +6,11 @@ import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.xander.dao.PlayerHibernateDao;
 import org.xander.model.Player;
-import org.xander.randomService.RandomService;
+import org.xander.randomService.RandomNumberGenerationService;
 import org.xander.service.PlayerService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.verify;
@@ -22,7 +25,7 @@ public class PlayerGenerationTest {
     @Mock
     private Player player;
     @Mock
-    private RandomService randomService;
+    private RandomNumberGenerationService randomService;
     private PlayerGeneration generatePlayer;
 
     @Before
@@ -33,7 +36,15 @@ public class PlayerGenerationTest {
 
     @Test
     public void generatePlayer() {
-        when(randomService.generateRandomNumber()).thenReturn(1);
+        List<Integer> numbers = new ArrayList<>();
+
+        when(randomService.getSizeOfWinNumbers()).thenReturn(5);
+        int sizeOfWinNumbers = randomService.getSizeOfWinNumbers();
+        for (int i = 1; i <= sizeOfWinNumbers; i++) {
+            numbers.add(i);
+        }
+
+        when(randomService.generateRandomNumber()).thenReturn(numbers);
         generatePlayer.generatePlayer("Jack-o-Lantern");
 
         verify(randomService).generateRandomNumber();
