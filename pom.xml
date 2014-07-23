@@ -28,10 +28,9 @@
         <javax.servlet.version>2.5</javax.servlet.version>
         <!--<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>-->
 
-        <!--<cglib.version>2.2</cglib.version>-->
+        <cglib.version>2.2</cglib.version>
         <javassist.version>3.12.1.GA</javassist.version>
 
-        <jersey.server.version>1.16</jersey.server.version>
         <jersey.server.version>1.16</jersey.server.version>
         <jackson.mapper.version>1.9.11</jackson.mapper.version>
     </properties>
@@ -73,8 +72,23 @@
             <version>${spring-framework.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.7.4</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
+            <version>${spring-framework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
             <version>${spring-framework.version}</version>
         </dependency>
         <dependency>
@@ -84,7 +98,12 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring-framework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
             <version>${spring-framework.version}</version>
         </dependency>
         <dependency>
@@ -102,6 +121,11 @@
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>${javassist.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>${cglib.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

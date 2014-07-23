@@ -1,6 +1,5 @@
 package org.xander.service;
 
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.dao.Dao;
 import org.xander.dao.DrawConfigurationHibernateDao;
@@ -8,13 +7,15 @@ import org.xander.model.DrawConfiguration;
 
 import java.util.List;
 
-@Service(value = "drawConfigurationService")
 @Transactional
 public class DrawConfigurationService implements ContentService<DrawConfiguration> {
     Dao dao;
 
     public DrawConfigurationService(Dao dao) {
         this.dao = dao;
+    }
+
+    public DrawConfigurationService() {
     }
 
     @Override

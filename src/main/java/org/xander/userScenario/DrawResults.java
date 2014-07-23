@@ -1,7 +1,5 @@
 package org.xander.userScenario;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.model.Draw;
 import org.xander.model.DrawConfiguration;
@@ -15,22 +13,19 @@ import java.util.List;
 
 @Transactional
 public class DrawResults {
-    @Qualifier("playerService")
-    @Autowired
     PlayerService playerService;
-    @Qualifier("drawService")
-    @Autowired
     DrawService drawService;
-    @Qualifier("drawConfigurationService")
-    @Autowired
     DrawConfigurationService drawConfigurationService;
-
+//
     public DrawResults(PlayerService playerService,
                        DrawService drawService,
                        DrawConfigurationService drawConfigurationService) {
         this.playerService = playerService;
         this.drawService = drawService;
         this.drawConfigurationService = drawConfigurationService;
+    }
+
+    public DrawResults() {
     }
 
     public List<Player> getPlayers() {

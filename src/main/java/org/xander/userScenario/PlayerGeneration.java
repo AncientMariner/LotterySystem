@@ -1,17 +1,12 @@
 package org.xander.userScenario;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.randomService.RandomService;
 import org.xander.service.PlayerService;
 
 @Transactional
 public class PlayerGeneration {
-    @Qualifier("playerService")
-    @Autowired
     private PlayerService playerService;
-    @Autowired
     private RandomService randomService;
 
     PlayerGenerationState state;
@@ -21,7 +16,10 @@ public class PlayerGeneration {
         this.playerService = playerService;
         this.randomService = randomService;
 
-        state = new OpenState(this);;
+        state = new OpenState(this);
+    }
+
+    public PlayerGeneration() {
     }
 
     public void generatePlayer(String name) {

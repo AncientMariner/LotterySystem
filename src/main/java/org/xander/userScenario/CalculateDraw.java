@@ -1,7 +1,5 @@
 package org.xander.userScenario;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.model.Draw;
 import org.xander.randomService.RandomNumberGenerationService;
@@ -14,16 +12,15 @@ import java.util.Set;
 
 @Transactional
 public class CalculateDraw {
-    @Qualifier("drawService")
-    @Autowired
-    private DrawService drawService;
-
-    @Autowired
-    private RandomService randomService;
+    public DrawService drawService;
+    public RandomService randomService;
 
     public CalculateDraw(DrawService drawService, RandomService randomService) {
         this.drawService = drawService;
         this.randomService = randomService;
+    }
+
+    public CalculateDraw() {
     }
 
     public void generateDraw() {

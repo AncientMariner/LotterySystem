@@ -1,6 +1,5 @@
 package org.xander.service;
 
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.xander.dao.Dao;
 import org.xander.dao.PlayerHibernateDao;
@@ -8,13 +7,15 @@ import org.xander.model.Player;
 
 import java.util.List;
 
-@Service(value = "playerService")
 @Transactional
 public class PlayerService implements ContentService<Player> {
     Dao dao;
 
     public PlayerService(Dao dao) {
         this.dao = dao;
+    }
+
+    public PlayerService() {
     }
 
     @Override
