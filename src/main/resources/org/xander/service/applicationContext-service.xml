@@ -50,7 +50,7 @@
         <constructor-arg index="2" ref="drawConfigurationService"/>
     </bean>
 
-    <bean id="helloWorldService" class="org.xander.userScenario.HelloWorldService">
+    <bean id="helloWorldService" class="org.xander.userScenario.DrawResultsService">
         <constructor-arg ref="drawResults"/>
     </bean>
 
