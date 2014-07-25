@@ -7,9 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.xander.dao.PlayerHibernateDao;
 import org.xander.model.Player;
 
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -53,5 +51,11 @@ public class PlayerServiceTest {
     public void getPlayerByPrize() {
         playerService.getByLotteryNumber(anyInt());
         verify(playerHibernateDao).getByLotteryNumber(anyInt());
+    }
+
+    @Test
+    public void getPlayerByName() {
+        playerService.getByName(anyString());
+        verify(playerHibernateDao).getByName(anyString());
     }
 }

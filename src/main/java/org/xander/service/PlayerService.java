@@ -1,7 +1,6 @@
 package org.xander.service;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.xander.dao.Dao;
 import org.xander.dao.PlayerHibernateDao;
 import org.xander.model.Player;
 
@@ -9,9 +8,9 @@ import java.util.List;
 
 @Transactional
 public class PlayerService implements ContentService<Player> {
-    Dao dao;
+    PlayerHibernateDao dao;
 
-    public PlayerService(Dao dao) {
+    public PlayerService(PlayerHibernateDao dao) {
         this.dao = dao;
     }
 
@@ -20,7 +19,7 @@ public class PlayerService implements ContentService<Player> {
 
     @Override
     public Player getById(Long id) {
-        return (Player) dao.get(id);
+        return dao.get(id);
     }
 
     @Override
@@ -33,7 +32,12 @@ public class PlayerService implements ContentService<Player> {
         return dao.getAll();
     }
 
+    public Player getByName(String name) {
+        Player player = dao.getByName(name);
+        return player;
+    }
+
     public List<Player>getByLotteryNumber(int lotteryNumber) {
-        return ((PlayerHibernateDao)dao).getByLotteryNumber(lotteryNumber);
+        return dao.getByLotteryNumber(lotteryNumber);
     }
 }

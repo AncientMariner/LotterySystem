@@ -19,4 +19,10 @@ public class PlayerHibernateDao extends AbstractHibernateDao<Player>{
                 .add(Restrictions.eq("lotteryNumber", lotteryNumber))
                 .list();
     }
+
+    public Player getByName(String name) {
+        return (Player) getSession()
+                .createCriteria(Player.class)
+                .add(Restrictions.eq("name", name)).uniqueResult();
+    }
 }

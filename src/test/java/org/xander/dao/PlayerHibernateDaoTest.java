@@ -52,4 +52,18 @@ public class PlayerHibernateDaoTest extends AbstractTransactionalJUnit4SpringCon
         assertEquals(player1.getLotteryNumber(), result.get(0).getLotteryNumber());
         assertEquals(player1.getName(), result.get(0).getName());
     }
+
+    @Test
+    public void getByName() {
+        Player player1 = new Player("player1", 1234);
+        Player player2 = new Player("player2", 12345);
+        playerHibernateDao.saveOrUpdate(player1);
+        playerHibernateDao.saveOrUpdate(player2);
+
+        Player actualPlayer1 = playerHibernateDao.getByName(player1.getName());
+        Player actualPlayer2 = playerHibernateDao.getByName(player2.getName());
+
+        assertEquals(player1.getName(), actualPlayer1.getName());
+        assertEquals(player2.getName(), actualPlayer2.getName());
+    }
 }

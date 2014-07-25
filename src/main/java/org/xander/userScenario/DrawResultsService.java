@@ -29,9 +29,6 @@ public class DrawResultsService {
     public Response getPlayers() {
 
         List<Player> players = drawResults.getPlayers();
-//        List<Player> players = new ArrayList<>();
-//        players.add(new Player("1", 1));
-//        players.add(new Player("2", 2));
         String result = null;
         if (players.isEmpty()) {
             result = "result is empty";

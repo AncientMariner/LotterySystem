@@ -54,6 +54,14 @@
         <constructor-arg ref="drawResults"/>
     </bean>
 
+    <bean id="generateDrawService" class="org.xander.userScenario.GenerateDrawService">
+        <constructor-arg ref="generateDraw"/>
+    </bean>
+
+    <bean id="playerGenerationService" class="org.xander.userScenario.PlayerGenerationService">
+        <constructor-arg ref="generatePlayer"/>
+    </bean>
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>
