@@ -13,6 +13,9 @@ public class Draw implements Persistent {
         this.lotteryNumber = lotteryNumber;
     }
 
+    public Draw() {
+    }
+
     public int getPrize() {
         return prize;
     }

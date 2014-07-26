@@ -52,7 +52,7 @@ public class DrawResultsService {
         List<Player> players = drawResults.getWinners();
         String result = null;
         if (players.isEmpty()) {
-            result = "result is empty";
+            result = "no winners, please try next time";
         } else {
             try {
                 Object json = mapper.writeValueAsString(players);

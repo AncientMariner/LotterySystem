@@ -12,9 +12,14 @@ import static javax.ws.rs.core.Response.Status.OK;
 public class StartService {
 
     @GET
-    @Path("/")
+//    @Path("/")
     public Response getMsg(@Context UriInfo uriInfo) {
-        String output = "This is start page, content will follow " + uriInfo.getAbsolutePath();
+        String output = "This is start page, here is the list of possible requests:"+ "<br /><br />"
+                + uriInfo.getAbsolutePath() + "player/generation/{name}" + "<br />"
+                + uriInfo.getAbsolutePath() + "draw/generation" + "<br />"
+                + uriInfo.getAbsolutePath() + "drawResults/players" + "<br />"
+                + uriInfo.getAbsolutePath() + "drawResults/tickets" + "<br />"
+                + uriInfo.getAbsolutePath() + "drawResults/winners" + "<br />";
         return Response.status(OK).entity(output).build();
     }
 }

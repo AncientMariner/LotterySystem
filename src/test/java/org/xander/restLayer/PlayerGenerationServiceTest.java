@@ -18,7 +18,7 @@ public class PlayerGenerationServiceTest {
         WebResource webResource = client.resource("http://localhost:8080/rest/player/generation/" + name);
         ClientResponse response = webResource.accept("application/json").put(ClientResponse.class);
 
-        if (response.getStatus() != Response.Status.OK.ordinal()) {
+        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
             throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
 
@@ -33,13 +33,13 @@ public class PlayerGenerationServiceTest {
         WebResource webResourceWithEmptyName = client.resource(partOfTheURL + name);
         ClientResponse responseWithEmptyName = webResourceWithEmptyName.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
-        assertEquals(Response.Status.NOT_FOUND, responseWithEmptyName.getStatus());
+        assertEquals(Response.Status.NOT_FOUND.getStatusCode(), responseWithEmptyName.getStatus());
 
         String nullName = "";
 
         WebResource webResourceWithNullName = client.resource(partOfTheURL + nullName);
         ClientResponse responseWithNullName = webResourceWithNullName.accept(MediaType.APPLICATION_JSON).put(ClientResponse.class);
-        assertEquals(Response.Status.NOT_FOUND, responseWithNullName.getStatus());
+        assertEquals(Response.Status.NOT_FOUND.getStatusCode(), responseWithNullName.getStatus());
 
     }
 }

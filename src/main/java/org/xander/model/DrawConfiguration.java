@@ -14,6 +14,9 @@ public class DrawConfiguration implements Persistent{
         this.numberOfWinners = numberOfWinners;
     }
 
+    public DrawConfiguration() {
+    }
+
     public int getPrize() {
         return prize;
     }

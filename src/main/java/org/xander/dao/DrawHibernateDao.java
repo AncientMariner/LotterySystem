@@ -11,6 +11,7 @@ public class DrawHibernateDao extends AbstractHibernateDao<Draw>{
         return getSession()
                 .createCriteria(Draw.class)
                 .list();
+        //                .createCriteria(Draw.class).setProjection(Projections.projectionList())
     }
 
     public List<Draw> getByPrize(int prize) {

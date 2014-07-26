@@ -20,6 +20,9 @@ public class Player implements Persistent {
         }
     }
 
+    public Player() {
+    }
+
     public String getName() {
         return name;
     }

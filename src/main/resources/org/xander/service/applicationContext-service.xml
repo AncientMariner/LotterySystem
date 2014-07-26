@@ -37,10 +37,10 @@
     <bean id="generateDraw" class="org.xander.userScenario.DrawGeneration">
         <constructor-arg index="0" ref="drawService"/>
         <constructor-arg index="1" ref="randomService"/>
-        <constructor-arg index="2" ref="drawConfigurationService"/>
+        <constructor-arg index="2" ref="simpleGeneration"/>
     </bean>
 
-    <bean id="drawConfigurationGeneration" class="org.xander.userScenario.SimpleGeneration">
+    <bean id="simpleGeneration" class="org.xander.userScenario.SimpleGeneration">
         <constructor-arg ref="drawConfigurationService"/>
     </bean>
 

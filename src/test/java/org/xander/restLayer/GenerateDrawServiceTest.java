@@ -18,7 +18,7 @@ public class GenerateDrawServiceTest {
         WebResource webResource = client.resource(URL);
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).put(ClientResponse.class);
 
-        if (response.getStatus() != Response.Status.OK.ordinal()) {
+        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
             throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
 
