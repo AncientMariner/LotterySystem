@@ -1,8 +1,9 @@
-package org.xander.userScenario;
+package org.xander.restLayer;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.xander.model.Player;
+import org.xander.userScenario.DrawResults;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

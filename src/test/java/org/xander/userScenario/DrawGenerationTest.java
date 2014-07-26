@@ -8,7 +8,9 @@ import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.xander.dao.DrawHibernateDao;
 import org.xander.model.Draw;
+import org.xander.model.DrawConfiguration;
 import org.xander.randomService.RandomNumberGenerationService;
+import org.xander.service.DrawConfigurationService;
 import org.xander.service.DrawService;
 
 import java.util.ArrayList;
@@ -19,15 +21,19 @@ import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @ContextConfiguration(locations = {"classpath:/org/xander/service/applicationContext-service.xml",
-        "classpath:/org/xander/model/applicationContext-dao.xml"})
-public class CalculateDrawTest {
+                                   "classpath:/org/xander/model/applicationContext-dao.xml"})
+public class DrawGenerationTest {
     @Mock
     private DrawHibernateDao drawHibernateDao;
     @Mock
     private Draw draw;
     @Mock
     private RandomNumberGenerationService randomService;
-    private CalculateDraw calculateDraw;
+    @Mock
+    private DrawConfigurationService drawConfigurationService;
+
+    private DrawGeneration drawGeneration;
+    private SimpleGeneration simpleGeneration;
 
     @Rule
     public final ExpectedException exception = ExpectedException.none();
@@ -35,7 +41,8 @@ public class CalculateDrawTest {
     @Before
     public void setUp() {
         initMocks(this);
-        calculateDraw = new CalculateDraw(new DrawService(drawHibernateDao), randomService);
+        simpleGeneration = new SimpleGeneration(drawConfigurationService);
+        drawGeneration = new DrawGeneration(new DrawService(drawHibernateDao), randomService, simpleGeneration);
     }
 
     @Test
@@ -50,8 +57,9 @@ public class CalculateDrawTest {
 
         when(randomService.generateRandomNumber()).thenReturn(numbers);
 
-        calculateDraw.generateDraw();
+        drawGeneration.generate();
 
+        verify(drawConfigurationService, times(3)).addContent((DrawConfiguration) anyObject());
         verify(randomService).generateRandomNumber();
         verify(drawHibernateDao, times(sizeOfWinNumbers)).saveOrUpdate((Draw) anyObject());
     }
@@ -68,7 +76,7 @@ public class CalculateDrawTest {
         when(randomService.generateRandomNumber()).thenReturn(numbers);
 
         exception.expect(UnsupportedOperationException.class);
-        calculateDraw.generateDraw();
+        drawGeneration.generate();
 
         verify(randomService).generateRandomNumber();
         verify(drawHibernateDao, never()).saveOrUpdate((Draw) anyObject());

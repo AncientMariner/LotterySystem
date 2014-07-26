@@ -1,12 +1,10 @@
-package org.xander.userScenario;
+package org.xander.restLayer;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.xander.userScenario.PlayerGeneration;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -21,7 +19,7 @@ public class PlayerGenerationService {
         this.playerGeneration = playerGeneration;
     }
 
-    @GET
+    @PUT
     @Path("/generation/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlayer(@PathParam("name") String name) {

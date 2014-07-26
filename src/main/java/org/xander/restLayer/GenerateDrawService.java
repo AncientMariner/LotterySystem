@@ -1,6 +1,7 @@
-package org.xander.userScenario;
+package org.xander.restLayer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.xander.userScenario.DrawGeneration;
 
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -11,17 +12,17 @@ import javax.ws.rs.core.Response;
 @Path("/draw")
 public class GenerateDrawService {
     @Autowired
-    CalculateDraw calculateDraw;
+    DrawGeneration drawGeneration;
 
-    public GenerateDrawService(CalculateDraw calculateDraw) {
-        this.calculateDraw = calculateDraw;
+    public GenerateDrawService(DrawGeneration drawGeneration) {
+        this.drawGeneration = drawGeneration;
     }
 
     @PUT
     @Path("/generation")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlayers() {
-        calculateDraw.generateDraw();
+        drawGeneration.generate();
         String result = "draw is generated";
         return Response.ok(result).build();
     }

@@ -52,11 +52,4 @@ public class DrawConfigurationServiceTest {
         drawConfigurationService.getDrawConfigurationByPrize(anyInt());
         verify(dao).getByPrize(anyInt());
     }
-
-    @Test
-    public void generateConfig() {
-        drawConfigurationService.generateContent(drawConfiguration);
-        drawConfigurationService.generateContent(drawConfiguration);
-        verify(dao, times(2)).saveOrUpdate((DrawConfiguration) anyObject());
-    }
 }

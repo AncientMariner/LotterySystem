@@ -3,7 +3,7 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.xander.model">
-    <class name="Player" table="Draw" lazy="true">
+    <class name="Player" table="Player" lazy="true">
         <id name="id" column="id">
             <generator class="native"/>
         </id>

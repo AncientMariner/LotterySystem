@@ -46,12 +46,13 @@ public class DrawResultsTest {
     private DrawConfigurationService drawConfigurationService;
 
     private PlayerGeneration playerGeneration;
-    private CalculateDraw calculateDraw;
+    private DrawGeneration drawGeneration;
+    private SimpleGeneration simpleGeneration;
 
     @Before
     public void setUp() {
         initMocks(this);
-        calculateDraw = new CalculateDraw(new DrawService(drawHibernateDao), randomService);
+        drawGeneration = new DrawGeneration(new DrawService(drawHibernateDao), randomService, simpleGeneration);
         playerService = new PlayerService(playerHibernateDao);
         drawService = new DrawService(drawHibernateDao);
         drawConfigurationService = new DrawConfigurationService(drawConfigurationHibernateDao);

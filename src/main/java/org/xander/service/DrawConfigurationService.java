@@ -36,8 +36,4 @@ public class DrawConfigurationService implements ContentService<DrawConfiguratio
     public List<DrawConfiguration> getDrawConfigurationByPrize(int prize) {
         return ((DrawConfigurationHibernateDao)dao).getByPrize(prize);
     }
-
-    public void generateContent(DrawConfiguration drawConfiguration) {
-        addContent(drawConfiguration);
-    }
 }

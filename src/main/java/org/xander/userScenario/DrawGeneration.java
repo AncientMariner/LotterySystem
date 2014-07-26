@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.xander.model.Draw;
 import org.xander.randomService.RandomNumberGenerationService;
 import org.xander.randomService.RandomService;
+import org.xander.service.DrawConfigurationService;
 import org.xander.service.DrawService;
 
 import java.util.HashSet;
@@ -11,24 +12,25 @@ import java.util.List;
 import java.util.Set;
 
 @Transactional
-public class CalculateDraw {
+public class DrawGeneration {
     public DrawService drawService;
     public RandomService randomService;
+    public DrawConfigurationService drawConfigurationService;
+    public SimpleGeneration simpleGeneration;
 
-    public CalculateDraw(DrawService drawService, RandomService randomService) {
+    public DrawGeneration(DrawService drawService, RandomService randomService, SimpleGeneration simpleGeneration) {
         this.drawService = drawService;
         this.randomService = randomService;
+        this.simpleGeneration = simpleGeneration;
     }
 
-    public CalculateDraw() {
+    public DrawGeneration() {
     }
 
-    public void generateDraw() {
+    public void generate() {
         List<Integer> numbers = randomService.generateRandomNumber();
-
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-
-        int sizeOfWinNumbers = ((RandomNumberGenerationService)randomService).getSizeOfWinNumbers();
+        int sizeOfWinNumbers = ((RandomNumberGenerationService) randomService).getSizeOfWinNumbers();
 
         if (uniqueNumbers.size() != sizeOfWinNumbers) {
             throw new UnsupportedOperationException("There is an error in random lottery service " +

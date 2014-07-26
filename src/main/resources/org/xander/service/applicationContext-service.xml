@@ -34,9 +34,14 @@
         <property name="sizeOfWinNumbers" value="5" />
     </bean>
 
-    <bean id="generateDraw" class="org.xander.userScenario.CalculateDraw">
+    <bean id="generateDraw" class="org.xander.userScenario.DrawGeneration">
         <constructor-arg index="0" ref="drawService"/>
         <constructor-arg index="1" ref="randomService"/>
+        <constructor-arg index="2" ref="drawConfigurationService"/>
+    </bean>
+
+    <bean id="drawConfigurationGeneration" class="org.xander.userScenario.SimpleGeneration">
+        <constructor-arg ref="drawConfigurationService"/>
     </bean>
 
     <bean id="generatePlayer" class="org.xander.userScenario.PlayerGeneration">
@@ -50,15 +55,15 @@
         <constructor-arg index="2" ref="drawConfigurationService"/>
     </bean>
 
-    <bean id="helloWorldService" class="org.xander.userScenario.DrawResultsService">
+    <bean id="drawResultsService" class="org.xander.restLayer.DrawResultsService">
         <constructor-arg ref="drawResults"/>
     </bean>
 
-    <bean id="generateDrawService" class="org.xander.userScenario.GenerateDrawService">
+    <bean id="generateDrawService" class="org.xander.restLayer.GenerateDrawService">
         <constructor-arg ref="generateDraw"/>
     </bean>
 
-    <bean id="playerGenerationService" class="org.xander.userScenario.PlayerGenerationService">
+    <bean id="playerGenerationService" class="org.xander.restLayer.PlayerGenerationService">
         <constructor-arg ref="generatePlayer"/>
     </bean>
 

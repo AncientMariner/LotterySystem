@@ -1,4 +1,4 @@
-package org.xander.userScenario;
+package org.xander.restLayer;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
