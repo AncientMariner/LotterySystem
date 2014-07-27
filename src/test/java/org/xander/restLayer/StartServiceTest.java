@@ -21,9 +21,28 @@ public class StartServiceTest {
         }
 
         assertEquals("This is start page, here is the list of possible requests:<br /><br />" +
-                "http://localhost:8080/rest/player/generation/{name}<br />http://localhost:8080/rest/draw/generation" +
-                "<br />http://localhost:8080/rest/drawResults/players<br />" +
-                "http://localhost:8080/rest/drawResults/tickets<br />http://localhost:8080/rest/drawResults/winners" +
-                "<br />", response.getEntity(String.class));
+                "http://localhost:8080/rest/player/generation/{name}<br />" +
+                "http://localhost:8080/rest/draw/generation<br />" +
+                "http://localhost:8080/rest/drawResults/players<br />" +
+                "http://localhost:8080/rest/drawResults/tickets<br />" +
+                "http://localhost:8080/rest/drawResults/winners<br />", response.getEntity(String.class));
+    }
+
+    @Test
+    public void defaultPage() {
+        Client client = Client.create();
+        WebResource webResource = client.resource("http://localhost:8080/");
+        ClientResponse response = webResource.accept("*/*").get(ClientResponse.class);
+
+        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+            throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+        }
+
+        assertEquals("This is start page, here is the list of possible requests:<br /><br />" +
+                "http://localhost:8080/rest/player/generation/{name}<br />" +
+                "http://localhost:8080/rest/draw/generation<br />" +
+                "http://localhost:8080/rest/drawResults/players<br />" +
+                "http://localhost:8080/rest/drawResults/tickets<br />" +
+                "http://localhost:8080/rest/drawResults/winners<br />", response.getEntity(String.class));
     }
 }

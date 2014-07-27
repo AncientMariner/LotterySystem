@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.List;
 
-@Path("/drawResults")
+@Path("rest/drawResults")
 public class DrawResultsService {
     ObjectMapper mapper = new ObjectMapper();
 

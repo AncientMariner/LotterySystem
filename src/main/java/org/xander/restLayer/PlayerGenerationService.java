@@ -8,7 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/player")
+@Path("rest/player")
 public class PlayerGenerationService {
     ObjectMapper mapper = new ObjectMapper();
 
