@@ -1,20 +1,20 @@
 package org.xander.userScenario;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.xander.randomService.RandomService;
+import org.xander.service.DrawService;
 import org.xander.service.PlayerService;
 
 @Transactional
 public class PlayerGeneration {
     private PlayerService playerService;
-    private RandomService randomService;
+    private DrawService drawService;
 
-    PlayerGenerationState state;
+    private PlayerGenerationState state;
+
     private int countOfPlayers = 5;
-
-    public PlayerGeneration(PlayerService playerService, RandomService randomService) {
+    public PlayerGeneration(PlayerService playerService, DrawService drawService) {
         this.playerService = playerService;
-        this.randomService = randomService;
+        this.drawService = drawService;
 
         state = new OpenState(this);
     }
@@ -30,12 +30,12 @@ public class PlayerGeneration {
         this.state = state;
     }
 
-    public PlayerService getPlayerService() {
-        return playerService;
+    public DrawService getDrawService() {
+        return drawService;
     }
 
-    public RandomService getRandomService() {
-        return randomService;
+    public PlayerService getPlayerService() {
+        return playerService;
     }
 
     public int getCountOfPlayers() {

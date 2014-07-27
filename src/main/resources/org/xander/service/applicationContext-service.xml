@@ -46,7 +46,7 @@
 
     <bean id="generatePlayer" class="org.xander.userScenario.PlayerGeneration">
         <constructor-arg index="0" ref="playerService"/>
-        <constructor-arg index="1" ref="randomService"/>
+        <constructor-arg index="1" ref="drawService"/>
     </bean>
 
     <bean id="drawResults" class="org.xander.userScenario.DrawResults">

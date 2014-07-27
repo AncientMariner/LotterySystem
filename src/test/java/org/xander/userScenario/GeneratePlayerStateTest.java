@@ -7,8 +7,9 @@ import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.xander.dao.PlayerHibernateDao;
+import org.xander.model.Draw;
 import org.xander.model.Player;
-import org.xander.randomService.RandomNumberGenerationService;
+import org.xander.service.DrawService;
 import org.xander.service.PlayerService;
 
 import java.util.ArrayList;
@@ -18,14 +19,14 @@ import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @ContextConfiguration(locations = {"classpath:/org/xander/service/applicationContext-service.xml",
-        "classpath:/org/xander/model/applicationContext-dao.xml"})
+                                   "classpath:/org/xander/model/applicationContext-dao.xml"})
 public class GeneratePlayerStateTest {
     @Mock
     private PlayerHibernateDao playerHibernateDao;
     @Mock
     private Player player;
     @Mock
-    private RandomNumberGenerationService randomService;
+    private DrawService drawService;
     private PlayerGeneration playerGeneration;
 
     @Rule
@@ -38,42 +39,40 @@ public class GeneratePlayerStateTest {
 
     @Test
     public void generatePlayer() {
-        playerGeneration = new PlayerGeneration(new PlayerService(playerHibernateDao), randomService);
-        List<Integer> numbers = new ArrayList<>();
+        playerGeneration = new PlayerGeneration(new PlayerService(playerHibernateDao), drawService);
+        List<Draw> draws = new ArrayList<>();
+        draws.add(new Draw(1, 21));
+        draws.add(new Draw(2, 22));
+        draws.add(new Draw(3, 23));
+        draws.add(new Draw(4, 24));
+        draws.add(new Draw(5, 25));
 
-        when(randomService.getSizeOfWinNumbers()).thenReturn(5);
-        int sizeOfWinNumbers = randomService.getSizeOfWinNumbers();
-        for (int i = 1; i <= sizeOfWinNumbers; i++) {
-            numbers.add(i);
-        }
-
-        when(randomService.generateRandomNumber()).thenReturn(numbers);
-        for (int i = 1; i <= sizeOfWinNumbers; i++) {
+        when(drawService.getAll()).thenReturn(draws);
+        for (int i = 1; i <= draws.size(); i++) {
             playerGeneration.generatePlayer("Jack-o-Lantern" + i);
         }
 
-        verify(randomService, times(sizeOfWinNumbers)).generateRandomNumber();
+        verify(drawService, times(5)).getAll();
     }
 
     @Test
     public void generatePlayerNegative() {
-        playerGeneration = new PlayerGeneration(new PlayerService(playerHibernateDao), randomService);
-        List<Integer> numbers = new ArrayList<>();
+        playerGeneration = new PlayerGeneration(new PlayerService(playerHibernateDao), drawService);
+        List<Draw> draws = new ArrayList<>();
+        draws.add(new Draw(1, 21));
+        draws.add(new Draw(2, 22));
+        draws.add(new Draw(3, 23));
+        draws.add(new Draw(4, 24));
+        draws.add(new Draw(5, 25));
 
-        when(randomService.getSizeOfWinNumbers()).thenReturn(5);
-        int sizeOfWinNumbers = randomService.getSizeOfWinNumbers();
-        for (int i = 1; i <= sizeOfWinNumbers; i++) {
-            numbers.add(i);
-        }
-
-        when(randomService.generateRandomNumber()).thenReturn(numbers);
-        for (int i = 1; i <= sizeOfWinNumbers; i++) {
+        when(drawService.getAll()).thenReturn(draws);
+        for (int i = 1; i <= draws.size(); i++) {
             playerGeneration.generatePlayer("Jack-o-Lantern" + i);
         }
 
-        exception.expect(IllegalStateException.class);
-        playerGeneration.generatePlayer("Jack-o-Lantern" + (sizeOfWinNumbers + 1));
+        verify(drawService, times(5)).getAll();
 
-        verify(randomService, times(sizeOfWinNumbers)).generateRandomNumber();
+        exception.expect(IllegalStateException.class);
+        playerGeneration.generatePlayer("Jack-o-Lantern" + (draws.size() + 1));
     }
 }

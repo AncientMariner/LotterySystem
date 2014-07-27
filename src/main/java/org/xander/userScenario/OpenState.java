@@ -1,8 +1,9 @@
 package org.xander.userScenario;
 
+import org.xander.model.Draw;
 import org.xander.model.Player;
-import org.xander.randomService.RandomService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OpenState implements PlayerGenerationState {
@@ -14,10 +15,13 @@ public class OpenState implements PlayerGenerationState {
 
     @Override
     public void generatePlayer(String name) {
-        RandomService randomService = playerGeneration.getRandomService();
-        List<Integer> numbers = randomService.generateRandomNumber();
-        Integer lotteryNumber = numbers.get(playerGeneration.getCountOfPlayers() - 1);
+        List<Integer> numbers = new ArrayList<>();
+        List<Draw> draws = playerGeneration.getDrawService().getAll();
+        for (Draw draw : draws) {
+            numbers.add(draw.getLotteryNumber());
+        }
 
+        Integer lotteryNumber = numbers.get(playerGeneration.getCountOfPlayers() - 1);
         Player player = new Player(name, lotteryNumber);
         playerGeneration.getPlayerService().addContent(player);
 
