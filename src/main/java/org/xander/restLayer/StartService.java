@@ -21,12 +21,12 @@ public class StartService {
     @GET
     @Path("/rest")
     public Response getMsg(@Context UriInfo uriInfo) {
-        String output = "This is start page, here is the list of possible requests:"+ "<br /><br />"
-                + uriInfo.getAbsolutePath() + "/player/generation/{name}" + "<br />"
-                + uriInfo.getAbsolutePath() + "/draw/generation" + "<br />"
-                + uriInfo.getAbsolutePath() + "/drawResults/players" + "<br />"
-                + uriInfo.getAbsolutePath() + "/drawResults/tickets" + "<br />"
-                + uriInfo.getAbsolutePath() + "/drawResults/winners" + "<br />";
+        String output = "This is start page, here is the list of possible requests:"+ " <br /><br />"
+                + uriInfo.getAbsolutePath() + "/player/generation/{name} {PUT} " + "<br />"
+                + uriInfo.getAbsolutePath() + "/draw/generation {PUT} " + "<br />"
+                + uriInfo.getAbsolutePath() + "/drawResults/players {GET} " + "<br />"
+                + uriInfo.getAbsolutePath() + "/drawResults/tickets {GET} " + "<br />"
+                + uriInfo.getAbsolutePath() + "/drawResults/winners {GET} " + "<br />";
         return Response.status(OK).entity(output).build();
     }
 }

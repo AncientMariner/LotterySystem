@@ -20,12 +20,12 @@ public class StartServiceTest {
             throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
 
-        assertEquals("This is start page, here is the list of possible requests:<br /><br />" +
-                "http://localhost:8080/rest/player/generation/{name}<br />" +
-                "http://localhost:8080/rest/draw/generation<br />" +
-                "http://localhost:8080/rest/drawResults/players<br />" +
-                "http://localhost:8080/rest/drawResults/tickets<br />" +
-                "http://localhost:8080/rest/drawResults/winners<br />", response.getEntity(String.class));
+        assertEquals("This is start page, here is the list of possible requests: <br /><br />" +
+                "http://localhost:8080/rest/player/generation/{name} {PUT} <br />" +
+                "http://localhost:8080/rest/draw/generation {PUT} <br />" +
+                "http://localhost:8080/rest/drawResults/players {GET} <br />" +
+                "http://localhost:8080/rest/drawResults/tickets {GET} <br />" +
+                "http://localhost:8080/rest/drawResults/winners {GET} <br />", response.getEntity(String.class));
     }
 
     @Test
@@ -38,11 +38,11 @@ public class StartServiceTest {
             throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
         }
 
-        assertEquals("This is start page, here is the list of possible requests:<br /><br />" +
-                "http://localhost:8080/rest/player/generation/{name}<br />" +
-                "http://localhost:8080/rest/draw/generation<br />" +
-                "http://localhost:8080/rest/drawResults/players<br />" +
-                "http://localhost:8080/rest/drawResults/tickets<br />" +
-                "http://localhost:8080/rest/drawResults/winners<br />", response.getEntity(String.class));
+        assertEquals("This is start page, here is the list of possible requests: <br /><br />" +
+                "http://localhost:8080/rest/player/generation/{name} {PUT} <br />" +
+                "http://localhost:8080/rest/draw/generation {PUT} <br />" +
+                "http://localhost:8080/rest/drawResults/players {GET} <br />" +
+                "http://localhost:8080/rest/drawResults/tickets {GET} <br />" +
+                "http://localhost:8080/rest/drawResults/winners {GET} <br />", response.getEntity(String.class));
     }
 }
