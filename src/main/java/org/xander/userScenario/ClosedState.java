@@ -8,7 +8,7 @@ public class ClosedState implements PlayerGenerationState {
     }
 
     @Override
-    public void generatePlayer(String name) {
+    public void generatePlayer(String name, int number) {
         throw new IllegalStateException("Lottery is closed for purchases");
     }
 }

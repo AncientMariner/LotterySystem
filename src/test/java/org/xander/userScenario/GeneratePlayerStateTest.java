@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.xander.dao.PlayerHibernateDao;
 import org.xander.model.Draw;
 import org.xander.model.Player;
-import org.xander.service.DrawService;
 import org.xander.service.PlayerService;
 
 import java.util.ArrayList;
@@ -25,8 +24,6 @@ public class GeneratePlayerStateTest {
     private PlayerHibernateDao playerHibernateDao;
     @Mock
     private Player player;
-    @Mock
-    private DrawService drawService;
     private PlayerGeneration playerGeneration;
 
     @Rule
@@ -39,7 +36,7 @@ public class GeneratePlayerStateTest {
 
     @Test
     public void generatePlayer() {
-        playerGeneration = new PlayerGeneration(new PlayerService(playerHibernateDao), drawService);
+        playerGeneration = new PlayerGeneration(new PlayerService(playerHibernateDao));
         List<Draw> draws = new ArrayList<>();
         draws.add(new Draw(1, 21));
         draws.add(new Draw(2, 22));
@@ -47,17 +44,16 @@ public class GeneratePlayerStateTest {
         draws.add(new Draw(4, 24));
         draws.add(new Draw(5, 25));
 
-        when(drawService.getAll()).thenReturn(draws);
         for (int i = 1; i <= draws.size(); i++) {
             playerGeneration.generatePlayer("Jack-o-Lantern" + i);
         }
 
-        verify(drawService, times(5)).getAll();
+        verify(playerHibernateDao, times(5)).saveOrUpdate((Player) anyObject());
     }
 
     @Test
     public void generatePlayerNegative() {
-        playerGeneration = new PlayerGeneration(new PlayerService(playerHibernateDao), drawService);
+        playerGeneration = new PlayerGeneration(new PlayerService(playerHibernateDao));
         List<Draw> draws = new ArrayList<>();
         draws.add(new Draw(1, 21));
         draws.add(new Draw(2, 22));
@@ -65,12 +61,11 @@ public class GeneratePlayerStateTest {
         draws.add(new Draw(4, 24));
         draws.add(new Draw(5, 25));
 
-        when(drawService.getAll()).thenReturn(draws);
         for (int i = 1; i <= draws.size(); i++) {
             playerGeneration.generatePlayer("Jack-o-Lantern" + i);
         }
 
-        verify(drawService, times(5)).getAll();
+        verify(playerHibernateDao, times(5)).saveOrUpdate((Player) anyObject());
 
         exception.expect(IllegalStateException.class);
         playerGeneration.generatePlayer("Jack-o-Lantern" + (draws.size() + 1));
