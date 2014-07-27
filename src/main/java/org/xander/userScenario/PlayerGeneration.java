@@ -20,7 +20,6 @@ public class PlayerGeneration {
     public PlayerGeneration() {
     }
 
-
     public static int randInt(int min, int max) {
         Random random = new Random();
         int randomNumber = random.nextInt((max - min) + 1) + min;
