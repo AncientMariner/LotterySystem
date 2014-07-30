@@ -1,5 +1,9 @@
 package org.xander.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Player implements Persistent {
     public static final String DEFAULT_NAME = "default name";
     public static final int DEFAULT_LOTTERY_NUMBER = 0;
@@ -36,14 +40,15 @@ public class Player implements Persistent {
         return id;
     }
 
+    @XmlElement
     private void setId(Long id) {
         this.id = id;
     }
-
+    @XmlElement
     private void setName(String name) {
         this.name = name;
     }
-
+    @XmlElement
     private void setLotteryNumber(int lotteryNumber) {
         this.lotteryNumber = lotteryNumber;
     }

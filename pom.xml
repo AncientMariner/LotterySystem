@@ -184,6 +184,11 @@
             <artifactId>jersey-client</artifactId>
             <version>${jersey.server.version}</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.sun.jersey.contribs</groupId>-->
+            <!--<artifactId>jersey-spring</artifactId>-->
+            <!--<version>${jersey.server.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>

@@ -3,6 +3,7 @@ package org.xander.restLayer;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.core.Response;
@@ -11,9 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class DrawResultsServiceTest {
     // TODO should be run initially by starting the app
-//    @Ignore
-
-
+    @Ignore
     @Test
     public void emptyPlayers() {
         Client client = Client.create();
@@ -28,7 +27,7 @@ public class DrawResultsServiceTest {
     }
 
     // TODO should be run initially by starting the app
-//    @Ignore
+    @Ignore
     @Test
     public void emptyWinners() {
         Client client = Client.create();
@@ -43,7 +42,7 @@ public class DrawResultsServiceTest {
     }
 
     // TODO should be run initially by starting the app
-//    @Ignore
+    @Ignore
     @Test
     public void emptyTickets() {
         Client client = Client.create();

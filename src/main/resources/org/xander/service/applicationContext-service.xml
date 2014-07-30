@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx
@@ -65,6 +66,11 @@
     <bean id="playerGenerationService" class="org.xander.restLayer.PlayerGenerationService">
         <constructor-arg ref="generatePlayer"/>
     </bean>
+
+    <!--<context:component-scan base-package="org.xander.restLayer"></context:component-scan>-->
+
+    <!--<bean id="playerProvider" class="org.xander.restLayer.PlayerProvider" scope="singleton">-->
+    <!--</bean>-->
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>

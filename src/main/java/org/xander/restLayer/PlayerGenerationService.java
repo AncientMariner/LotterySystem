@@ -1,7 +1,7 @@
 package org.xander.restLayer;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.xander.model.Player;
 import org.xander.userScenario.PlayerGeneration;
 
 import javax.ws.rs.*;
@@ -10,7 +10,6 @@ import javax.ws.rs.core.Response;
 
 @Path("rest/player")
 public class PlayerGenerationService {
-    ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     PlayerGeneration playerGeneration;
@@ -21,8 +20,7 @@ public class PlayerGenerationService {
 
     @PUT
     @Path("/generation/{name}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getPlayer(@PathParam("name") String name) {
+    public Response putPlayer(@PathParam("name") String name) {
         if (name != null && !name.isEmpty()) {
             playerGeneration.generatePlayer(name);
         } else {
@@ -36,5 +34,18 @@ public class PlayerGenerationService {
 //            e.printStackTrace();
 //        }
         return Response.ok("player " + name + " is generated").build();
+    }
+
+
+    //without provider version
+    @GET
+    @Path("/getPlayer/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Player getPlayer(@PathParam("name") String name) {
+        Player player = playerGeneration.getPlayerService().getByName(name);
+
+        return player;
+
+//        return Response.ok().entity(player).build();
     }
 }
