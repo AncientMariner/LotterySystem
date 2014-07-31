@@ -27,21 +27,9 @@ public class DrawResultsService {
     @GET
     @Path("/players")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPlayers() {
-
+    public List<Player> getPlayers() {
         List<Player> players = drawResults.getPlayers();
-        String result = null;
-        if (players.isEmpty()) {
-            result = "result is empty";
-        } else {
-            try {
-                Object json = mapper.writeValueAsString(players);
-                result = mapper.writeValueAsString(json);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return Response.ok(result).build();
+        return players;
     }
 
     @GET
