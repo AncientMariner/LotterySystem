@@ -11,6 +11,7 @@ import org.xander.model.Player;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @ContextConfiguration(locations = {"classpath:/org/xander/model/applicationContext-dao.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
@@ -65,5 +66,18 @@ public class PlayerHibernateDaoTest extends AbstractTransactionalJUnit4SpringCon
 
         assertEquals(player1.getName(), actualPlayer1.getName());
         assertEquals(player2.getName(), actualPlayer2.getName());
+    }
+
+    @Test
+    public void getAll() {
+        Player player1 = new Player("player1", 1234);
+        Player player2 = new Player("player2", 12345);
+        playerHibernateDao.saveOrUpdate(player1);
+        playerHibernateDao.saveOrUpdate(player2);
+
+        List<Player> result = playerHibernateDao.getAll();
+
+        assertTrue(result.contains(player1));
+        assertTrue(result.contains(player2));
     }
 }

@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class DrawConfigurationTest {
     @Rule
@@ -39,4 +41,13 @@ public class DrawConfigurationTest {
         exception.expect(IllegalStateException.class);
         drawConfiguration = new DrawConfiguration(prize, numberOfWinners);
     }
+
+    @Test
+    public void emptyConstructor() {
+        drawConfiguration = new DrawConfiguration();
+        assertNotNull(drawConfiguration);
+
+        assertNull(drawConfiguration.getId());
+    }
+
 }

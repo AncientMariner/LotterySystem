@@ -17,6 +17,7 @@ import org.xander.service.PlayerService;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.verify;
@@ -96,4 +97,11 @@ public class DrawResultsTest {
         verify(drawHibernateDao).getByPrize(anyInt());
         verify(playerHibernateDao).getByLotteryNumber(anyInt());
     }
+
+    @Test
+    public void emptyConstructor() {
+        drawResults = new DrawResults();
+        assertNotNull(drawResults);
+    }
+
 }

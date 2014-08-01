@@ -16,6 +16,7 @@ import org.xander.service.DrawService;
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -81,4 +82,11 @@ public class DrawGenerationTest {
         verify(randomService).generateRandomNumber();
         verify(drawHibernateDao, never()).saveOrUpdate((Draw) anyObject());
     }
+
+    @Test
+    public void emptyConstructor() {
+        drawGeneration = new DrawGeneration();
+        assertNotNull(drawGeneration);
+    }
+
 }

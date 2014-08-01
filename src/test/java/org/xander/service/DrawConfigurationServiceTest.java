@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.xander.dao.DrawConfigurationHibernateDao;
 import org.xander.model.DrawConfiguration;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.*;
@@ -20,7 +21,6 @@ public class DrawConfigurationServiceTest {
     @Mock
     private DrawConfiguration drawConfiguration;
     private DrawConfigurationService drawConfigurationService;
-
 
     @Before
     public void setUp() {
@@ -51,5 +51,11 @@ public class DrawConfigurationServiceTest {
     public void getDrawConfigurationByPrize() {
         drawConfigurationService.getDrawConfigurationByPrize(anyInt());
         verify(dao).getByPrize(anyInt());
+    }
+
+    @Test
+    public void emptyConstructor() {
+        drawConfigurationService = new DrawConfigurationService();
+        assertNotNull(drawConfigurationService);
     }
 }

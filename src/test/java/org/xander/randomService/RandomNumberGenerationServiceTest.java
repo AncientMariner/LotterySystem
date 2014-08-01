@@ -3,11 +3,12 @@ package org.xander.randomService;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 @ContextConfiguration(locations = {"classpath:/org/xander/service/applicationContext-service.xml",
         "classpath:/org/xander/model/applicationContext-dao.xml"})
-public class RandomServiceTest {
+public class RandomNumberGenerationServiceTest {
     @Test
     public void ensureGenerationDoesNotContainZero() {
         for (int i = 0; i < 500; i++) {
@@ -31,5 +32,13 @@ public class RandomServiceTest {
 
     public void generateRandomDecreasingTheWinners(RandomService randomService) {
         assertFalse(randomService.generateRandomNumber().contains(0));
+    }
+
+    @Test
+    public void getSizeOfWinNumbers() {
+        RandomService randomService = new RandomNumberGenerationService();
+        ((RandomNumberGenerationService)randomService).setSizeOfWinNumbers(6);
+
+        assertEquals(6, ((RandomNumberGenerationService)randomService).getSizeOfWinNumbers());
     }
 }

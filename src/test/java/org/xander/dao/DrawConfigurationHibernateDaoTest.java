@@ -6,12 +6,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.xander.model.Draw;
 import org.xander.model.DrawConfiguration;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @ContextConfiguration(locations = {"classpath:/org/xander/model/applicationContext-dao.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
@@ -52,5 +52,18 @@ public class DrawConfigurationHibernateDaoTest extends AbstractTransactionalJUni
 
         assertEquals(drawConfiguration2.getNumberOfWinners(), result.get(0).getNumberOfWinners());
         assertEquals(drawConfiguration2.getPrize(), result.get(0).getPrize());
+    }
+
+    @Test
+    public void getAll() {
+        DrawConfiguration drawConfiguration1 = new DrawConfiguration(1,2);
+        DrawConfiguration drawConfiguration2 = new DrawConfiguration(3,4);
+        drawConfigurationHibernateDao.saveOrUpdate(drawConfiguration1);
+        drawConfigurationHibernateDao.saveOrUpdate(drawConfiguration2);
+
+        List<DrawConfiguration> result = drawConfigurationHibernateDao.getAll();
+
+        assertTrue(result.contains(drawConfiguration1));
+        assertTrue(result.contains(drawConfiguration2));
     }
 }

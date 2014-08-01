@@ -11,6 +11,7 @@ import org.xander.model.Draw;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @ContextConfiguration(locations = {"classpath:/org/xander/model/applicationContext-dao.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
@@ -53,5 +54,18 @@ public class DrawHibernateDaoTest extends AbstractTransactionalJUnit4SpringConte
         assertEquals(draw1.getPrize(), result.get(0).getPrize());
         assertEquals(draw2.getLotteryNumber(), result.get(1).getLotteryNumber());
         assertEquals(draw2.getPrize(), result.get(1).getPrize());
+    }
+
+    @Test
+    public void getAll() {
+        Draw draw1 = new Draw(1, 2);
+        Draw draw2 = new Draw(1, 3);
+        drawHibernateDao.saveOrUpdate(draw1);
+        drawHibernateDao.saveOrUpdate(draw2);
+
+        List<Draw> result = drawHibernateDao.getAll();
+
+        assertTrue(result.contains(draw1));
+        assertTrue(result.contains(draw2));
     }
 }

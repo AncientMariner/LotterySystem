@@ -3,6 +3,8 @@ package org.xander.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class PlayerTest {
     Player player;
@@ -59,4 +61,13 @@ public class PlayerTest {
         assertEquals(expectedName, player.getName());
         assertEquals(0, player.getLotteryNumber());
     }
+
+    @Test
+    public void emptyConstructor() {
+        player = new Player();
+        assertNotNull(player);
+
+        assertNull(player.getId());
+    }
+
 }

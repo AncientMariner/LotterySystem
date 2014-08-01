@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.xander.model.DrawConfiguration;
 import org.xander.service.DrawConfigurationService;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -29,4 +30,11 @@ public class SimpleGenerationTest {
     public void testGenerate() {
         verify(drawConfigurationService, times(3)).addContent((DrawConfiguration) anyObject());
     }
+
+    @Test
+    public void emptyConstructor() {
+        simpleGeneration = new SimpleGeneration();
+        assertNotNull(simpleGeneration);
+    }
+
 }

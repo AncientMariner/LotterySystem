@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class DrawTest {
     @Rule
@@ -45,4 +46,11 @@ public class DrawTest {
         draw = new Draw(1, 2);
         assertEquals(new Long(0), draw.getId());
     }
+
+    @Test
+    public void emptyConstructor() {
+        draw = new Draw();
+        assertNotNull(draw);
+    }
+
 }

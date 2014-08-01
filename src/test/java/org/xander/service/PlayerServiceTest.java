@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.xander.dao.PlayerHibernateDao;
 import org.xander.model.Player;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -58,4 +59,11 @@ public class PlayerServiceTest {
         playerService.getByName(anyString());
         verify(playerHibernateDao).getByName(anyString());
     }
+
+    @Test
+    public void emptyConstructor() {
+        playerService = new PlayerService();
+        assertNotNull(playerService);
+    }
+
 }

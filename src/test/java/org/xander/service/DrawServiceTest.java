@@ -8,6 +8,7 @@ import org.xander.dao.DrawHibernateDao;
 import org.xander.model.Draw;
 import org.xander.randomService.RandomService;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyObject;
@@ -55,5 +56,11 @@ public class DrawServiceTest {
     public void getDrawByPrize() {
         drawService.getDrawByPrize(anyInt());
         verify(drawHibernateDao).getByPrize(anyInt());
+    }
+
+    @Test
+    public void emptyConstructor() {
+        drawService = new DrawService();
+        assertNotNull(drawService);
     }
 }
