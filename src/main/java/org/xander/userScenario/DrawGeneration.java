@@ -26,6 +26,10 @@ public class DrawGeneration {
     }
 
     public void generate() {
+        if (!isWinnersCombinationGenerated()) {
+            throw new UnsupportedOperationException("Winners combination was not generated. System is down now. " +
+                    "Please wait for the next draft");
+        }
 
         List<Integer> numbers = randomService.generateRandomNumber();
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
@@ -47,4 +51,7 @@ public class DrawGeneration {
         drawService.addContent(randomDraw5);
     }
 
+    public boolean isWinnersCombinationGenerated() {
+        return simpleGeneration != null;
+    }
 }

@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -66,11 +68,13 @@ public class DrawGenerationTest {
     }
 
     @Test
-    public void generateDrawNegative() {
+    public void generateDrawTooManyNumbers() {
         List<Integer> numbers = new ArrayList<>();
         when(randomService.getSizeOfWinNumbers()).thenReturn(5);
         int sizeOfWinNumbers = randomService.getSizeOfWinNumbers();
-        for (int i = 1; i <= sizeOfWinNumbers + 1; i++) {
+        int numberIsMoreThanPossible = sizeOfWinNumbers + 1;
+
+        for (int i = 1; i <= numberIsMoreThanPossible; i++) {
             numbers.add(i);
         }
 
@@ -84,9 +88,23 @@ public class DrawGenerationTest {
     }
 
     @Test
+    public void generateDrawWinnersWereNotDefined() {
+        drawGeneration = new DrawGeneration(new DrawService(drawHibernateDao), randomService, null);
+
+        assertFalse(drawGeneration.isWinnersCombinationGenerated());
+
+        exception.expect(UnsupportedOperationException.class);
+        drawGeneration.generate();
+    }
+
+    @Test
+    public void isWinnersGenerated() {
+        assertTrue(drawGeneration.isWinnersCombinationGenerated());
+    }
+
+    @Test
     public void emptyConstructor() {
         drawGeneration = new DrawGeneration();
         assertNotNull(drawGeneration);
     }
-
 }

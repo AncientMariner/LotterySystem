@@ -53,7 +53,10 @@ configuration.
 --- Comments
 
 - Solution is not dependent on currency
-- Random number generation component is easily replaceable by adding a new bean and implementing the existing interface (RandomService)
-- Scalability. New rest resources could be added as separate classes to restLayer package. For each resource it is recommendable to test and generate a valid user scenario. Number of lottery tickets and win tickets could be changed. Any currency you want could be added as a currencyName variable and appropriatelly stored in the DB. Db could be changed by modifying the driver in the configuration file (please note Hibernate - compatible driver)
-
-
+- Random number generation component is easily replaceable by adding a new bean
+  and implementing the existing interface (RandomService)
+- Scalability. New rest resources could be added as separate classes to restLayer package.
+  For each resource it is recommendable to test and generate a valid user scenario.
+  Number of lottery tickets and win tickets could be changed.
+  Any currency you want could be added as a currencyName variable and appropriately stored in the DB.
+  DB could be changed by modifying the driver in the configuration file (please note Hibernate - compatible driver)

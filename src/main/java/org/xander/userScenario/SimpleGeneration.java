@@ -20,7 +20,7 @@ public class SimpleGeneration {
 
     private void generate() {
         drawConfigurationService.addContent(new DrawConfiguration(1000, 1));
-        drawConfigurationService.addContent(new DrawConfiguration(500, 2));
+        drawConfigurationService.addContent(new DrawConfiguration(500, 1));
         drawConfigurationService.addContent(new DrawConfiguration(100, 3));
     }
 }
